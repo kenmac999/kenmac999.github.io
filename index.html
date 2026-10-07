@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>rclone Auth Relay</title>
+    <script>
+        window.onload = function () {
+            // Extract the query parameters or hash fragments sent by the provider
+            const queryParams = window.location.search || window.location.hash;
+            if (queryParams) {
+                // Relay the auth code directly back to your local rclone listener
+                const localRcloneUrl = "http://127.0.0.1:53682/auth" + queryParams;
+                window.location.href = localRcloneUrl;
+            } else {
+                document.body.innerHTML = "<h3>No auth parameters detected. Ensure you were redirected here by your API provider.</h3>";
+            }
+        };
+    </script>
+</head>
+<body>
+    <h3>Relaying authentication token back to rclone...</h3>
+</body>
+</html>
